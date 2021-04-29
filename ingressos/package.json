@@ -1,5 +1,5 @@
 {
-  "name": "observacoes",
+  "name": "clientes",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elcioabrahao/observacoes.git"
+    "url": "git+https://github.com/elcioabrahao/clientes.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elcioabrahao/observacoes/issues"
+    "url": "https://github.com/elcioabrahao/clientes/issues"
   },
-  "homepage": "https://github.com/elcioabrahao/observacoes#readme",
+  "homepage": "https://github.com/elcioabrahao/clientes#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "cors": "^2.8.5",

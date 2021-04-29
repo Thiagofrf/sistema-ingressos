@@ -1,48 +1,45 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 app.use(express.json());
 const baseConsulta = {};
-const axios = require("axios");
+const axios = require('axios');
 const funcoes = {
-    LembreteCriado: (lembrete) => {
-        baseConsulta[lembrete.contador] = lembrete;
-    },
-    ObservacaoCriada: (observacao) => {
-        const observacoes =
-            baseConsulta[observacao.lembreteId]["observacoes"] || [];
-        observacoes.push(observacao);
-        baseConsulta[observacao.lembreteId]["observacoes"] =
-            observacoes;
-    },
-    ObservacaoAtualizada: (observacao) => {
-        const observacoes =
-            baseConsulta[observacao.lembreteId]["observacoes"];
-        const indice = observacoes.findIndex((o) => o.id ===
-            observacao.id);
-        observacoes[indice] = observacao;
-    },
+  LembreteCriado: (lembrete) => {
+    baseConsulta[lembrete.contador] = lembrete;
+  },
+  ClienteCriada: (cliente) => {
+    const clientes = baseConsulta[cliente.lembreteId]['clientes'] || [];
+    clientes.push(cliente);
+    baseConsulta[cliente.lembreteId]['clientes'] = clientes;
+  },
+  ClienteAtualizada: (cliente) => {
+    const clientes = baseConsulta[cliente.lembreteId]['clientes'];
+    const indice = clientes.findIndex((o) => o.id === cliente.id);
+    clientes[indice] = cliente;
+  },
 };
 
-app.get("/lembretes", (req, res) => {
-    res.status(200).send(baseConsulta);
+app.get('/ingressos', (req, res) => {
+  res.status(200).send(baseConsulta);
 });
-app.post("/eventos", (req, res) => {
-    try {
-        funcoes[req.body.tipo](req.body.dados);
-    } catch (err) {}
+app.post('/eventos', (req, res) => {
+  try {
+    funcoes[req.body.tipo](req.body.dados);
+  } catch (err) {}
 
-    res.status(200).send(baseConsulta);
+  res.status(200).send(baseConsulta);
 });
 app.listen(6000, async () => {
-    console.log("Consultas. Porta 6000");
-    const resp = await axios.get("http://192.168.16.1:10000/eventos")
-        .catch((err) => {
-            console.log("err", err);
-        });
-    //axios entrega os dados na propriedade data
-    resp.data.forEach((valor, indice, colecao) => {
-        try {
-            funcoes[valor.tipo](valor.dados);
-        } catch (err) {}
+  console.log('Consultas. Porta 6000');
+  const resp = await axios
+    .get('http://127.0.0.1:10000/eventos')
+    .catch((err) => {
+      console.log('err', err);
     });
+  //axios entrega os dados na propriedade data
+  resp.data.forEach((valor, indice, colecao) => {
+    try {
+      funcoes[valor.tipo](valor.dados);
+    } catch (err) {}
+  });
 });

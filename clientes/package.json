@@ -1,5 +1,5 @@
 {
-  "name": "lembretes",
+  "name": "ingressos",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elcioabrahao/lembretes.git"
+    "url": "git+https://github.com/elcioabrahao/ingressos.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elcioabrahao/lembretes/issues"
+    "url": "https://github.com/elcioabrahao/ingressos/issues"
   },
-  "homepage": "https://github.com/elcioabrahao/lembretes#readme",
+  "homepage": "https://github.com/elcioabrahao/ingressos#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "cors": "^2.8.5",
